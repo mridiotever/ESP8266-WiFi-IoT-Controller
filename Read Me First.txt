@@ -1,5 +1,5 @@
 
-Welcome to ESP8266 Wi-Fi Switch Contoller
+Welcome to ESP8266 Wi-Fi Switch Controller
 
 *Use NodeMCU PYFLASHER
 ------------------------------------------------------
@@ -27,5 +27,6 @@ WIFI Client Mode
 
 Juvy J. Obias
 <mridiotever>
+
 
 
