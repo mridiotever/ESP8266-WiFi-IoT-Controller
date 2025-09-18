@@ -54,7 +54,7 @@ String head = "<!DOCTYPE html><html>"
     "<meta charset=\"UTF-8\"></head>"
     "<body><nav><b>IoT Controller</b></nav><div>";
     
-String foot = "</div><div align='center' class=q><a>&#169; All rights reserved iCodeWebSolutions.</a></div>";
+String foot = "</div><div align='center' class=q><a>&#169; All rights reserved JITECH I.T. SOLUTIONS.</a></div>";
 
 //Function Declaration
 bool is_connected(void);
@@ -276,8 +276,14 @@ String read_eeprom(int f, int t){
 void web_portal(){ 
   WiFi.mode(WIFI_AP);
   WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
-  WiFi.softAP("IoT Controller","esp8266iot");
+  WiFi.softAP("IoT Controller","");
   dnsServer.start(DNS_PORT, "*", apIP);
+    
+  server.onNotFound([]() {
+      server.sendHeader("Location", String("http://esp8266.local/"), true);
+      server.send (302, "text/plain", "");  
+    });
+  
   portal_page();
 }
 //---------------------------------------------------------//
@@ -337,7 +343,6 @@ void portal_page()
               }
           ESP.reset(); //Reboot NodeMCU
         }
- 
     });
 
       server.on("/control", []() { 
@@ -442,10 +447,11 @@ void portal_page()
                       
       String breaker = "<br><br><br><br><br><br>";
       
-      String refresh = "<!DOCTYPE html><html><head><meta name='viewport' content=\'width=device-width,initial-scale=1\'><style>"+ loader +"</style><script>setTimeout(function(){window.location.href = '/control';}, 1000);</script></head><body>"+ breaker +"<div class='loader'></div></body></html>";
+      String refresh = "<!DOCTYPE html><html><head><meta name='viewport' content=\'width=device-width,initial-scale=1\'><style>"+ loader +"</style><script>setTimeout(function(){window.location.href = '/';}, 1000);</script></head><body>"+ breaker +"<div class='loader'></div></body></html>";
       
       server.send(200, "text/html", refresh); 
          
       });       
   } 
 }
+
