@@ -26,7 +26,6 @@ WIFI Client Mode
     ELSE Access Point mode is automatically enabled.
 ------------------------------------------------------
 
-Juvy J. Obias
 <mridiotever>
 
 
